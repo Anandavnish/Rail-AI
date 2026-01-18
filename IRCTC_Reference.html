@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC Reference - Traditional Railway Booking</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #003d82 0%, #0056b3 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .notice {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .notice h2 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .notice p {
+            color: #856404;
+            line-height: 1.8;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .info-card h3 {
+            color: #003d82;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .info-card p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #42a047 0%, #66bb6a 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 160, 71, 0.3);
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding: 30px 0;
+            text-align: center;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>🚂 IRCTC Traditional Booking Reference</h1>
+            <p>This is a reference page for traditional IRCTC-style train booking</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="notice">
+            <h2>⚠️ Reference Document</h2>
+            <p>
+                This file has been cleaned and polished for presentation purposes.
+                The original IRCTC HTML (3671 lines) contained extensive AMP framework code
+                and inline styles. This simplified version serves as a reference for traditional
+                railway booking interfaces.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <h3>About Traditional IRCTC Booking</h3>
+            <p>
+                The traditional IRCTC (Indian Railway Catering and Tourism Corporation)
+                platform provides direct train ticket booking services. Users can search
+                for trains between two stations, view availability, and book tickets.
+            </p>
+            <p>
+                <strong>Limitation:</strong> Traditional systems only show full-route availability.
+                If a train shows "Waitlist" status, there's no automated suggestion for
+                alternative routing or split journeys.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <h3>🎯 Introducing: RailSplit System</h3>
+            <p>
+                Our new <strong>AI-Powered Railway Split Journey Discovery System</strong>
+                goes beyond traditional booking by:
+            </p>
+            <ul style="margin-left: 30px; line-height: 2;">
+                <li>Finding confirmed seats when direct trains are waitlisted</li>
+                <li>Intelligently breaking journeys into optimal segments</li>
+                <li>Suggesting multi-train combinations through quota-reset junctions</li>
+                <li>Providing confirmation probability scores for each option</li>
+                <li>Displaying detailed fare and timing breakdowns</li>
+            </ul>
+
+            <a href="index.html" class="btn">🚀 Try RailSplit System</a>
+        </div>
+
+        <div class="info-card">
+            <h3>Key Differences</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <tr style="background: #f8f9fa;">
+                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #003d82;">Feature</th>
+                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #003d82;">Traditional IRCTC
+                    </th>
+                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #003d82;">RailSplit</th>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;"><strong>Search Approach</strong></td>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;">Linear full-route only</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;">Graph-based multi-segment</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;"><strong>When Waitlisted</strong></td>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;">No alternatives shown</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;">Smart split options provided</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;"><strong>Route Analysis</strong></td>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;">Basic availability check</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0;">AI-powered route optimization</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px;"><strong>User Experience</strong></td>
+                    <td style="padding: 15px;">Functional</td>
+                    <td style="padding: 15px;">Modern, intuitive, beautiful</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Railway Booking Reference | For Educational & Presentation Purposes</p>
+        <p style="margin-top: 10px; opacity: 0.8; font-size: 0.9rem;">
+            Not affiliated with IRCTC | Demo Prototype Only
+        </p>
+    </div>
+</body>
+
+</html>

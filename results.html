@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - RailSplit</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="results.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">RailSplit</div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#how-it-works">How It Works</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Summary -->
+    <section class="search-summary" id="searchSummary">
+        <!-- Populated by JS -->
+    </section>
+
+    <!-- Results Container -->
+    <div class="container results-container" id="resultsContainer">
+        <!-- Direct Trains Section -->
+        <section class="results-section">
+            <div class="section-header">
+                <h2>Direct Trains</h2>
+                <p>Full route trains without any transfers</p>
+            </div>
+            <div id="directTrainsContainer">
+                <div class="spinner"></div>
+            </div>
+        </section>
+
+        <!-- Split Journey Section -->
+        <section class="results-section split-section">
+            <div class="section-header highlight">
+                <div>
+                    <h2>🎯 Smart Split Journey Options</h2>
+                    <p>Confirmed seat alternatives through intermediate stations</p>
+                </div>
+                <div class="info-badge">
+                    <span class="tooltip">ℹ️
+                        <span class="tooltiptext">
+                            These journeys split your route into segments, each with better seat availability.
+                            Book individual tickets for each leg to increase confirmation chances.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div id="splitJourneysContainer">
+                <div class="spinner"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                &copy; 2026 RailSplit - AI-Powered Railway Split Journey Discovery System
+                <br>
+                <small>Demo prototype for educational purposes | Not affiliated with IRCTC</small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/railwayGraph.js"></script>
+    <script src="js/fakeInventory.js"></script>
+    <script src="js/splitEngine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

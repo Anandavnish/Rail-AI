@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AI-Powered Railway Split Journey Discovery - Find confirmed train tickets by splitting journeys across intermediate stations when direct tickets are unavailable">
+    <meta name="keywords"
+        content="Indian Railways, train tickets, split journey, IRCTC, confirmed tickets, waitlist alternative">
+    <title>RailSplit - Smart Railway Split Journey Discovery</title>
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">RailSplit</div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#features">Features</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Find Confirmed Seats, Always</h1>
+                <p class="hero-subtitle">
+                    When direct tickets show Waitlist, we discover hidden seat opportunities
+                    by intelligently splitting your journey across intermediate stations
+                </p>
+
+                <div class="hero-tagline">
+                    <strong>🎯 Smart Railway Seat-Recovery Engine</strong>
+                </div>
+
+                <!-- Search Card -->
+                <div class="search-card">
+                    <h3>Search Trains with Split Journey Options</h3>
+                    <form class="search-form" id="searchForm">
+                        <div class="form-group">
+                            <label for="fromStation">From</label>
+                            <select class="form-control" id="fromStation" required>
+                                <option value="">Select Station</option>
+                                <option value="NDLS">New Delhi (NDLS)</option>
+                                <option value="DLI">Delhi (DLI)</option>
+                                <option value="NZM">Hazrat Nizamuddin (NZM)</option>
+                                <option value="ANVT">Anand Vihar (ANVT)</option>
+                                <option value="JP">Jaipur (JP)</option>
+                                <option value="KOTA">Kota Jn (KOTA)</option>
+                                <option value="AGC">Agra Cantt (AGC)</option>
+                                <option value="JHS">Jhansi Jn (JHS)</option>
+                                <option value="BPL">Bhopal Jn (BPL)</option>
+                                <option value="CNB">Kanpur Central (CNB)</option>
+                                <option value="LKO">Lucknow (LKO)</option>
+                                <option value="PRYJ">Prayagraj Jn (PRYJ)</option>
+                                <option value="BSB">Varanasi Jn (BSB)</option>
+                                <option value="PNBE">Patna Junction (PNBE)</option>
+                                <option value="RJPB">Rajendra Nagar (RJPB)</option>
+                                <option value="GAYA">Gaya Jn (GAYA)</option>
+                                <option value="DDU">Pt DD Upadhyaya (DDU)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="toStation">To</label>
+                            <select class="form-control" id="toStation" required>
+                                <option value="">Select Station</option>
+                                <option value="BCT">Mumbai Central (BCT)</option>
+                                <option value="CSMT">Mumbai CST (CSMT)</option>
+                                <option value="BDTS">Bandra Terminus (BDTS)</option>
+                                <option value="LTT">Lokmanya Tilak T (LTT)</option>
+                                <option value="HWH">Howrah Jn (HWH)</option>
+                                <option value="SDAH">Sealdah (SDAH)</option>
+                                <option value="MAS">Chennai Central (MAS)</option>
+                                <option value="SBC">KSR Bangalore (SBC)</option>
+                                <option value="PUNE">Pune Jn (PUNE)</option>
+                                <option value="ADI">Ahmedabad Jn (ADI)</option>
+                                <option value="JP">Jaipur (JP)</option>
+                                <option value="KOTA">Kota Jn (KOTA)</option>
+                                <option value="JHS">Jhansi Jn (JHS)</option>
+                                <option value="BPL">Bhopal Jn (BPL)</option>
+                                <option value="NGP">Nagpur (NGP)</option>
+                                <option value="PNBE">Patna Junction (PNBE)</option>
+                                <option value="RJPB">Rajendra Nagar (RJPB)</option>
+                                <option value="PRYJ">Prayagraj Jn (PRYJ)</option>
+                                <option value="BSB">Varanasi Jn (BSB)</option>
+                                <option value="CNB">Kanpur Central (CNB)</option>
+                                <option value="LKO">Lucknow (LKO)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="travelDate">Journey Date</label>
+                            <input type="date" class="form-control" id="travelDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="travelClass">Class</label>
+                            <select class="form-control" id="travelClass" required>
+                                <option value="SL">Sleeper (SL)</option>
+                                <option value="3A" selected>AC 3 Tier (3A)</option>
+                                <option value="2A">AC 2 Tier (2A)</option>
+                                <option value="1A">AC 1st Class (1A)</option>
+                                <option value="CC">Chair Car (CC)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passengers">Passengers</label>
+                            <select class="form-control" id="passengers">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-search">
+                            🔍 Search Trains & Discover Splits
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Why Use RailSplit?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Hidden Seat Discovery</h3>
+                    <p>
+                        We find confirmed seats by breaking your journey into segments,
+                        revealing inventory that appears "unavailable" on full routes
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3>Graph-Based Intelligence</h3>
+                    <p>
+                        Our engine treats railways as a network graph, discovering optimal
+                        split paths through quota-reset junctions and alternate stations
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Confirmation Probability</h3>
+                    <p>
+                        Every split journey shows real confirmation probability scores,
+                        helping you choose routes with the best chance of confirmed seats
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">💡</span>
+                    <h3>Smart Route Ranking</h3>
+                    <p>
+                        Routes are intelligently ranked by confirmation chance, journey time,
+                        transfer convenience, and fare comparison
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🚄</span>
+                    <h3>Multi-Train Combinations</h3>
+                    <p>
+                        Discover same-train splits, multi-train transfers, and alternate
+                        boarding stations for maximum flexibility
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Instant Results</h3>
+                    <p>
+                        Get comprehensive split journey options in seconds with detailed
+                        segment-wise seat status and fare breakdown
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>How RailSplit Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Search Route</h3>
+                    <p>
+                        Enter your origin, destination, date, and preferred class.
+                        We check direct trains first.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Discover Splits</h3>
+                    <p>
+                        Our graph algorithm identifies intermediate junctions and
+                        alternate paths with better seat availability.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Smart Ranking</h3>
+                    <p>
+                        Split options are scored by confirmation probability,
+                        journey time, transfers, and fare.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Book Segments</h3>
+                    <p>
+                        See detailed segment-wise booking information with train numbers,
+                        times, and seat status.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                &copy; 2026 RailSplit - AI-Powered Railway Split Journey Discovery System
+                <br>
+                <small>Demo prototype for educational purposes | Not affiliated with IRCTC</small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/railwayGraph.js"></script>
+    <script src="js/fakeInventory.js"></script>
+    <script src="js/splitEngine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
