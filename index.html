@@ -56,84 +56,95 @@
                 <div class="search-card">
                     <h3>Search Trains with Split Journey Options</h3>
                     <form class="search-form" id="searchForm">
-                        <div class="form-group">
-                            <label for="fromStation">From</label>
-                            <select class="form-control" id="fromStation" required>
-                                <option value="">Select Station</option>
-                                <option value="NDLS">New Delhi (NDLS)</option>
-                                <option value="DLI">Delhi (DLI)</option>
-                                <option value="NZM">Hazrat Nizamuddin (NZM)</option>
-                                <option value="ANVT">Anand Vihar (ANVT)</option>
-                                <option value="JP">Jaipur (JP)</option>
-                                <option value="KOTA">Kota Jn (KOTA)</option>
-                                <option value="AGC">Agra Cantt (AGC)</option>
-                                <option value="JHS">Jhansi Jn (JHS)</option>
-                                <option value="BPL">Bhopal Jn (BPL)</option>
-                                <option value="CNB">Kanpur Central (CNB)</option>
-                                <option value="LKO">Lucknow (LKO)</option>
-                                <option value="PRYJ">Prayagraj Jn (PRYJ)</option>
-                                <option value="BSB">Varanasi Jn (BSB)</option>
-                                <option value="PNBE">Patna Junction (PNBE)</option>
-                                <option value="RJPB">Rajendra Nagar (RJPB)</option>
-                                <option value="GAYA">Gaya Jn (GAYA)</option>
-                                <option value="DDU">Pt DD Upadhyaya (DDU)</option>
-                            </select>
+                        <div class="search-row">
+                            <div class="form-group">
+                                <label for="fromStation">From</label>
+                                <select class="form-control" id="fromStation" required>
+                                    <option value="">Select Station</option>
+                                    <option value="NDLS">New Delhi (NDLS)</option>
+                                    <option value="DLI">Delhi (DLI)</option>
+                                    <option value="NZM">Hazrat Nizamuddin (NZM)</option>
+                                    <option value="ANVT">Anand Vihar (ANVT)</option>
+                                    <option value="JP">Jaipur (JP)</option>
+                                    <option value="KOTA">Kota Jn (KOTA)</option>
+                                    <option value="AGC">Agra Cantt (AGC)</option>
+                                    <option value="JHS">Jhansi Jn (JHS)</option>
+                                    <option value="BPL">Bhopal Jn (BPL)</option>
+                                    <option value="CNB">Kanpur Central (CNB)</option>
+                                    <option value="LKO">Lucknow (LKO)</option>
+                                    <option value="PRYJ">Prayagraj Jn (PRYJ)</option>
+                                    <option value="BSB">Varanasi Jn (BSB)</option>
+                                    <option value="PNBE">Patna Junction (PNBE)</option>
+                                    <option value="RJPB">Rajendra Nagar (RJPB)</option>
+                                    <option value="GAYA">Gaya Jn (GAYA)</option>
+                                    <option value="DDU">Pt DD Upadhyaya (DDU)</option>
+                                </select>
+                            </div>
+
+                            <!-- Flip Button -->
+                            <div class="form-group flip-group">
+                                <button type="button" id="flipButton" class="btn-flip" title="Swap stations">
+                                    <span style="font-size: 1.5rem;">⇄</span>
+                                </button>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="toStation">To</label>
+                                <select class="form-control" id="toStation" required>
+                                    <option value="">Select Station</option>
+                                    <option value="BCT">Mumbai Central (BCT)</option>
+                                    <option value="CSMT">Mumbai CST (CSMT)</option>
+                                    <option value="BDTS">Bandra Terminus (BDTS)</option>
+                                    <option value="LTT">Lokmanya Tilak T (LTT)</option>
+                                    <option value="HWH">Howrah Jn (HWH)</option>
+                                    <option value="SDAH">Sealdah (SDAH)</option>
+                                    <option value="MAS">Chennai Central (MAS)</option>
+                                    <option value="SBC">KSR Bangalore (SBC)</option>
+                                    <option value="PUNE">Pune Jn (PUNE)</option>
+                                    <option value="ADI">Ahmedabad Jn (ADI)</option>
+                                    <option value="JP">Jaipur (JP)</option>
+                                    <option value="KOTA">Kota Jn (KOTA)</option>
+                                    <option value="JHS">Jhansi Jn (JHS)</option>
+                                    <option value="BPL">Bhopal Jn (BPL)</option>
+                                    <option value="NGP">Nagpur (NGP)</option>
+                                    <option value="PNBE">Patna Junction (PNBE)</option>
+                                    <option value="RJPB">Rajendra Nagar (RJPB)</option>
+                                    <option value="PRYJ">Prayagraj Jn (PRYJ)</option>
+                                    <option value="BSB">Varanasi Jn (BSB)</option>
+                                    <option value="CNB">Kanpur Central (CNB)</option>
+                                    <option value="LKO">Lucknow (LKO)</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="toStation">To</label>
-                            <select class="form-control" id="toStation" required>
-                                <option value="">Select Station</option>
-                                <option value="BCT">Mumbai Central (BCT)</option>
-                                <option value="CSMT">Mumbai CST (CSMT)</option>
-                                <option value="BDTS">Bandra Terminus (BDTS)</option>
-                                <option value="LTT">Lokmanya Tilak T (LTT)</option>
-                                <option value="HWH">Howrah Jn (HWH)</option>
-                                <option value="SDAH">Sealdah (SDAH)</option>
-                                <option value="MAS">Chennai Central (MAS)</option>
-                                <option value="SBC">KSR Bangalore (SBC)</option>
-                                <option value="PUNE">Pune Jn (PUNE)</option>
-                                <option value="ADI">Ahmedabad Jn (ADI)</option>
-                                <option value="JP">Jaipur (JP)</option>
-                                <option value="KOTA">Kota Jn (KOTA)</option>
-                                <option value="JHS">Jhansi Jn (JHS)</option>
-                                <option value="BPL">Bhopal Jn (BPL)</option>
-                                <option value="NGP">Nagpur (NGP)</option>
-                                <option value="PNBE">Patna Junction (PNBE)</option>
-                                <option value="RJPB">Rajendra Nagar (RJPB)</option>
-                                <option value="PRYJ">Prayagraj Jn (PRYJ)</option>
-                                <option value="BSB">Varanasi Jn (BSB)</option>
-                                <option value="CNB">Kanpur Central (CNB)</option>
-                                <option value="LKO">Lucknow (LKO)</option>
-                            </select>
-                        </div>
+                        <div class="search-row">
+                            <div class="form-group">
+                                <label for="travelDate">Journey Date</label>
+                                <input type="date" class="form-control" id="travelDate" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="travelDate">Journey Date</label>
-                            <input type="date" class="form-control" id="travelDate" required>
-                        </div>
+                            <div class="form-group">
+                                <label for="travelClass">Class</label>
+                                <select class="form-control" id="travelClass" required>
+                                    <option value="SL">Sleeper (SL)</option>
+                                    <option value="3A" selected>AC 3 Tier (3A)</option>
+                                    <option value="2A">AC 2 Tier (2A)</option>
+                                    <option value="1A">AC 1st Class (1A)</option>
+                                    <option value="CC">Chair Car (CC)</option>
+                                </select>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="travelClass">Class</label>
-                            <select class="form-control" id="travelClass" required>
-                                <option value="SL">Sleeper (SL)</option>
-                                <option value="3A" selected>AC 3 Tier (3A)</option>
-                                <option value="2A">AC 2 Tier (2A)</option>
-                                <option value="1A">AC 1st Class (1A)</option>
-                                <option value="CC">Chair Car (CC)</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="passengers">Passengers</label>
-                            <select class="form-control" id="passengers">
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
+                            <div class="form-group">
+                                <label for="passengers">Passengers</label>
+                                <select class="form-control" id="passengers">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-search">

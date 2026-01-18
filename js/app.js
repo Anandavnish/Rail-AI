@@ -1,4 +1,7 @@
-// Main Application Logic - Enhanced with Rich Metadata Display
+// Main Application Logic - Enhanced with Multi-Day Search and Flip Feature
+
+let currentSearchParams = null;
+let currentDate = null;
 
 // Set minimum date to today
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,14 +16,39 @@ document.addEventListener('DOMContentLoaded', function () {
   const searchForm = document.getElementById('searchForm');
   if (searchForm) {
     searchForm.addEventListener('submit', handleSearch);
+
+    // Add flip button listener on index page
+    const flipButton = document.getElementById('flipButton');
+    if (flipButton) {
+      flipButton.addEventListener('click', flipStations);
+    }
   }
 
   // Check if we're on results page
-  const resultsContainer = document.getElementById('resultsContainer');
+  const resultsContainer = document.getElementById('directTrainsContainer');
   if (resultsContainer) {
     displayResults();
   }
 });
+
+// Flip stations (swap FROM and TO)
+function flipStations() {
+  const fromSelect = document.getElementById('fromStation');
+  const toSelect = document.getElementById('toStation');
+
+  const tempValue = fromSelect.value;
+  fromSelect.value = toSelect.value;
+  toSelect.value = tempValue;
+
+  // Add animation feedback
+  const flipBtn = document.getElementById('flipButton');
+  if (flipBtn) {
+    flipBtn.style.transform = 'rotate(180deg) scale(1.2)';
+    setTimeout(() => {
+      flipBtn.style.transform = '';
+    }, 300);
+  }
+}
 
 // Handle search form submission
 function handleSearch(e) {
@@ -67,66 +95,200 @@ function displayResults() {
     return;
   }
 
-  // Show search summary
-  displaySearchSummary(searchParams);
+  currentSearchParams = searchParams;
+  currentDate = searchParams.travelDate;
+
+  // Show editable search form
+  displayEditableSearchForm(searchParams);
+
+  // Show date selector
+  displayDateSelector(searchParams.travelDate);
 
   // For demo: force some popular routes to have WL direct trains
   const popularRoutes = [
     { from: 'NDLS', to: 'BCT' },
-    { from: 'ND LS', to: 'CSMT' },
+    { from: 'NDLS', to: 'CSMT' },
     { from: 'NDLS', to: 'HWH' },
-    { from: 'ANVT', to: 'BCT' }
+    { from: 'ANVT', to: 'BCT' },
+    { from: 'NDLS', to: 'PNBE' }
   ];
 
   if (popularRoutes.some(r => r.from === searchParams.fromStation && r.to === searchParams.toStation)) {
-    // Force direct Rajdhani trains to WL to showcase split journey benefits
     forceWaitlist(['12952', '12954', '12302', '12434']);
   }
 
-  // Perform search
-  const date = new Date(searchParams.travelDate);
+  // Perform search for current date
+  performSearch(searchParams, currentDate);
+}
+
+// Display editable search form
+function displayEditableSearchForm(params) {
+  const summaryEl = document.getElementById('searchSummary');
+  if (!summaryEl) return;
+
+  summaryEl.innerHTML = `
+    <div class="search-summary-content">
+      <form id="modifySearchForm" class="search-form" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div class="form-group">
+          <label for="editFromStation">From</label>
+          <select class="form-control" id="editFromStation" required>
+            ${generateStationOptions(params.fromStation)}
+          </select>
+        </div>
+        
+        <div class="form-group" style="display: flex; align-items: flex-end; justify-content: cent er;">
+          <button type="button" id="flipButtonResults" class="btn-flip" title="Swap stations">
+            <span style="font-size: 1.5rem;">⇄</span>
+          </button>
+        </div>
+        
+        <div class="form-group">
+          <label for="editToStation">To</label>
+          <select class="form-control" id="editToStation" required>
+            ${generateStationOptions(params.toStation)}
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="editClass">Class</label>
+          <select class="form-control" id="editClass" required>
+            <option value="SL" ${params.travelClass === 'SL' ? 'selected' : ''}>Sleeper (SL)</option>
+            <option value="3A" ${params.travelClass === '3A' ? 'selected' : ''}>3 AC (3A)</option>
+            <option value="2A" ${params.travelClass === '2A' ? 'selected' : ''}>2 AC (2A)</option>
+            <option value="1A" ${params.travelClass === '1A' ? 'selected' : ''}>1 AC (1A)</option>
+            <option value="CC" ${params.travelClass === 'CC' ? 'selected' : ''}>Chair Car (CC)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="editPassengers">Passengers</label>
+          <input type="number" class="form-control" id="editPassengers" value="${params.passengers}" min="1" max="6" required>
+        </div>
+        
+        <div class="form-group" style="display: flex; align-items: flex-end;">
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+            🔍 Update Search
+          </button>
+        </div>
+      </form>
+    </div>
+  `;
+
+  // Add event listeners
+  document.getElementById('modifySearchForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    updateSearch();
+  });
+
+  document.getElementById('flipButtonResults').addEventListener('click', () => {
+    const fromSelect = document.getElementById('editFromStation');
+    const toSelect = document.getElementById('editToStation');
+    const tempValue = fromSelect.value;
+    fromSelect.value = toSelect.value;
+    toSelect.value = tempValue;
+  });
+}
+
+// Generate station options for dropdown
+function generateStationOptions(selectedValue) {
+  const stations = [
+    { code: 'NDLS', name: 'New Delhi' },
+    { code: 'DLI', name: 'Delhi' },
+    { code: 'NZM', name: 'Hazrat Nizamuddin' },
+    { code: 'ANVT', name: 'Anand Vihar' },
+    { code: 'JP', name: 'Jaipur' },
+    { code: 'KOTA', name: 'Kota Jn' },
+    { code: 'CNB', name: 'Kanpur Central' },
+    { code: 'LKO', name: 'Lucknow' },
+    { code: 'PRYJ', name: 'Prayagraj Jn' },
+    { code: 'BSB', name: 'Varanasi Jn' },
+    { code: 'PNBE', name: 'Patna Junction' },
+    { code: 'RJPB', name: 'Rajendra Nagar' },
+    { code: 'GAYA', name: 'Gaya Jn' },
+    { code: 'DDU', name: 'Pt DD Upadhyaya' },
+    { code: 'HWH', name: 'Howrah Jn' },
+    { code: 'SDAH', name: 'Sealdah' },
+    { code: 'BCT', name: 'Mumbai Central' },
+    { code: 'CSMT', name: 'Mumbai CST' },
+    { code: 'LTT', name: 'Lokmanya Tilak T' }
+  ];
+
+  let options = '<option value="">Select Station</option>';
+  stations.forEach(station => {
+    options += `<option value="${station.code}" ${station.code === selectedValue ? 'selected' : ''}>${station.name} (${station.code})</option>`;
+  });
+  return options;
+}
+
+// Update search with modified parameters
+function updateSearch() {
+  currentSearchParams = {
+    fromStation: document.getElementById('editFromStation').value,
+    toStation: document.getElementById('editToStation').value,
+    travelDate: currentDate,
+    travelClass: document.getElementById('editClass').value,
+    passengers: document.getElementById('editPassengers').value
+  };
+
+  sessionStorage.setItem('searchParams', JSON.stringify(currentSearchParams));
+  performSearch(currentSearchParams, currentDate);
+}
+
+// Display date selector
+function displayDateSelector(selectedDate) {
+  const dateTabsEl = document.getElementById('dateTabs');
+  if (!dateTabsEl) return;
+
+  const dates = [];
+  const baseDate = new Date(selectedDate);
+
+  for (let i = 0; i < 4; i++) {
+    const date = new Date(baseDate);
+    date.setDate(baseDate.getDate() + i);
+    dates.push(date);
+  }
+
+  let html = '';
+  dates.forEach((date, index) => {
+    const dateStr = date.toISOString().split('T')[0];
+    const dayName = date.toLocaleDateString('en-IN', { weekday: 'short' });
+    const dateDisplay = date.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+    const isActive = dateStr === currentDate ? 'active' : '';
+
+    html += `
+      <div class="date-tab ${isActive}" data-date="${dateStr}" onclick="selectDate('${dateStr}')">
+        <span class="day-name">${dayName}</span>
+        <span class="date-value">${dateDisplay}</span>
+      </div>
+    `;
+  });
+
+  dateTabsEl.innerHTML = html;
+}
+
+// Select a different date
+function selectDate(dateStr) {
+  currentDate = dateStr;
+  displayDateSelector(dateStr);
+  performSearch(currentSearchParams, currentDate);
+}
+
+// Perform search with given parameters
+function performSearch(params, searchDate) {
+  const date = new Date(searchDate);
   const results = searchTrains(
-    searchParams.fromStation,
-    searchParams.toStation,
-    searchParams.travelClass,
+    params.fromStation,
+    params.toStation,
+    params.travelClass,
     date,
     true
   );
 
   // Display direct trains
-  displayDirectTrains(results.directTrains, searchParams);
+  displayDirectTrains(results.directTrains, params);
 
   // Display split journey options
-  displaySplitJourneys(results.splitJourneys, searchParams);
-}
-
-// Display search summary
-function displaySearchSummary(params) {
-  const summaryEl = document.getElementById('searchSummary');
-  if (!summaryEl) return;
-
-  const fromName = stations[params.fromStation].name;
-  const toName = stations[params.toStation].name;
-
-  summaryEl.innerHTML = `
-    <div class="search-summary-content">
-      <div class="route-info">
-        <h2>${fromName} → ${toName}</h2>
-        <p>
-          ${new Date(params.travelDate).toLocaleDateString('en-IN', {
-    weekday: 'short',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })} 
-          | ${params.travelClass} | ${params.passengers} Passenger${params.passengers > 1 ? 's' : ''}
-        </p>
-      </div>
-      <button onclick="window.location.href='index.html'" class="btn btn-secondary">
-        🔄 New Search
-      </button>
-    </div>
-  `;
+  displaySplitJourneys(results.splitJourneys, params);
 }
 
 // ENHANCED: Display direct trains with rich metadata
