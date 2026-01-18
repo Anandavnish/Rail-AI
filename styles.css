@@ -107,7 +107,7 @@ body::before {
 /* === Header === */
 .header {
     background: var(--dark-surface);
-    backdrop-filter: blur(0px);
+    /* Removed backdrop-filter */
     border-bottom: 2px solid var(--neon-blue);
     box-shadow: 0 4px 30px rgba(0, 243, 255, 0.3);
     padding: 1rem 0;
@@ -250,7 +250,7 @@ body::before {
 
 .hero-tagline {
     background: var(--glass-bg);
-    backdrop-filter: blur(0px);
+    /* Removed backdrop-filter */
     border: 2px solid var(--neon-blue);
     padding: 1rem 2rem;
     border-radius: 12px;
@@ -274,7 +274,7 @@ body::before {
     padding: 2.5rem;
     box-shadow: var(--glow-md), var(--shadow-cyber);
     animation: fadeInUp 0.8s ease 0.6s backwards;
-    backdrop-filter: blur(0px);
+    /* Removed backdrop-filter */
 }
 
 .search-card h3 {
