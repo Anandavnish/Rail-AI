@@ -48,17 +48,17 @@ New features, optimizations, and improvements are being added regularly. Stay tu
 <table>
   <tr>
     <td align="center">
-      <img src="image/profile img.png" width="100px;" style="border-radius: 50%;" alt="Karan Priyadarshi"/><br />
+      <img src="image/profile_circle.png" width="100px;" alt="Karan Priyadarshi"/><br />
       <sub><b>Karan Priyadarshi</b></sub><br />
       <sub>Team Leader</sub>
     </td>
     <td align="center">
-      <img src="image/profile img.png" width="100px;" style="border-radius: 50%;" alt="Sidharth Priyadarshi"/><br />
+      <img src="image/profile_circle.png" width="100px;" alt="Sidharth Priyadarshi"/><br />
       <sub><b>Sidharth Priyadarshi</b></sub><br />
       <sub>Algorithm Design</sub>
     </td>
     <td align="center">
-      <img src="image/profile img.png" width="100px;" style="border-radius: 50%;" alt="Anand Avnish"/><br />
+      <img src="image/profile_circle.png" width="100px;" alt="Anand Avnish"/><br />
       <sub><b>Anand Avnish</b></sub><br />
       <sub>Technical Development</sub>
     </td>
